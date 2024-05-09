@@ -47,3 +47,23 @@
 > 测试用例设计思路、测试覆盖指标、覆盖率、测试通过率
 
 
+
+https://github.com/richenyunqi/CCF-CSP-and-PAT-solution/blob/master/CCF%20CSP/202009-3.%20%E7%82%B9%E4%BA%AE%E6%95%B0%E5%AD%97%E4%BA%BA%E7%94%9F.md
+
+https://zhuanlan.zhihu.com/p/335516793
+
+https://developer.aliyun.com/article/883777
+
+https://github.com/richenyunqi/CCF-CSP-and-PAT-solution/blob/master/CCF%20CSP/202009-3.%20%E7%82%B9%E4%BA%AE%E6%95%B0%E5%AD%97%E4%BA%BA%E7%94%9F.md
+
+https://github.com/AnyaCoder/CCF-CSP/blob/main/2024-03-12-%E7%82%B9%E4%BA%AE%E6%95%B0%E5%AD%97%E4%BA%BA%E7%94%9F.py
+
+https://github.com/Ya-jiang/CCF-CSP-Question-3/blob/main/%E7%82%B9%E4%BA%AE%E6%95%B0%E5%AD%97%E4%BA%BA%E7%94%9F.cpp
+
+https://github.com/WWaynee/CCF-CSP-code/blob/main/2020-09/%E3%80%9020211104%E3%80%913-%E7%82%B9%E4%BA%AE%E6%95%B0%E5%AD%97%E4%BA%BA%E7%94%9F(100).cpp
+
+
+
+
+
+https://sim.csp.thusaac.com/contest/20/problem/2
