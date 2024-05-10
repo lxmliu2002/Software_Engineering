@@ -1,7 +1,7 @@
 class Gate:
     def __init__(self, func_str: str, input_lst: list):
         self.func = func_str
-        self.input = input_lst
+        self.inputs = input_lst
         self.val = None
         self.loop = False
 
@@ -17,7 +17,7 @@ class Gate:
             }
             self.val = operations[self.func](input_lst)
         except Exception as e:
-            print(f"Error occurred while calculating {self.func}: {e}")
+            raise RuntimeError(f"Error occurred while calculating {self.func}: {e}")
 
     def solve(self, gates, inputs, visited):
         try:
@@ -25,7 +25,7 @@ class Gate:
                 return 0
             tmp_lst = []
             if self.val is None:
-                for name in self.input:
+                for name in self.inputs:
                     if name in visited:
                         self.loop = True
                         return 0
@@ -43,55 +43,64 @@ class Gate:
                 self.calculate(tmp_lst)
             return self.val
         except Exception as e:
-            print(f"Error occurred while solving: {e}")
-            return None
+            raise RuntimeError(f"Error occurred while solving: {e}")
 
     def clear(self):
+        """Clears the output value of the gate."""
         self.val = None
 
+
 def get_data():
-    Q = int(input())
-    test_cases = []
-    for _ in range(Q):
-        gate_dict = {}
-        M, N = input().split()
-        M = int(M)
-        N = int(N)
-        for i in range(N):
-            inputs = input().split()
-            FUNC = inputs[0]
-            L = inputs[2:]
-            gate_dict[f"O{i + 1}"] = Gate(FUNC, L)
-        S = int(input())
-        input_list = []
-        for _ in range(S):
-            I = input().split()
-            inputs = {index + 1: int(val) for index, val in enumerate(I)}
-            input_list.append(inputs)
-        output_list = []
-        for _ in range(S):
-            S_inputs = input().split()
-            output_lst = [int(val) for val in S_inputs[1:]]
-            output_list.append(output_lst)
-        test_cases.append((gate_dict, input_list, output_list))
-    return test_cases
+    try:
+        Q = int(input())
+        test_cases = []
+        for _ in range(Q):
+            gate_dict = {}
+            M, N = input().split()
+            M = int(M)
+            N = int(N)
+            for i in range(N):
+                inputs = input().split()
+                FUNC = inputs[0]
+                L = inputs[2:]
+                # assert all(val.startswith('O') or val.startswith('O') for val in L[2:]), "Invalid gate inputs"
+                gate_dict[f"O{i + 1}"] = Gate(FUNC, L)
+            S = int(input())
+            input_list = []
+            for _ in range(S):
+                I = input().split()
+                inputs = {index + 1: int(val) for index, val in enumerate(I)}
+                input_list.append(inputs)
+            output_list = []
+            for _ in range(S):
+                S_inputs = input().split()
+                output_lst = [int(val) for val in S_inputs[1:]]
+                output_list.append(output_lst)
+            test_cases.append((gate_dict, input_list, output_list))
+        return test_cases
+    except Exception as e:
+        raise RuntimeError(f"Error occurred while getting data: {e}")
+
 
 def simulate_circuit(gate_dict, input_list, output_list):
-    for inputs, expected_output in zip(input_list, output_list):
-        is_loop = False
-        for gate in gate_dict.values():
-            gate.clear()
-        for j in range(1, len(gate_dict) + 1):
-            gate_dict[f"O{j}"].solve(gate_dict, inputs, set())
-            if gate_dict[f"O{j}"].loop:
-                is_loop = True
+    try:
+        for inputs, expected_output in zip(input_list, output_list):
+            is_loop = False
+            for gate in gate_dict.values():
+                gate.clear()
+            for j in range(1, len(gate_dict) + 1):
+                gate_dict[f"O{j}"].solve(gate_dict, inputs, set())
+                if gate_dict[f"O{j}"].loop:
+                    is_loop = True
+                    break
+            if is_loop:
+                print("LOOP")
                 break
-        if is_loop:
-            print("LOOP")
-            continue
-        for output_index in expected_output:
-            print(gate_dict[f"O{output_index}"].val, end=' ')
-        print("")
+            for output_index in expected_output:
+                print(gate_dict[f"O{output_index}"].val, end=' ')
+            print("")
+    except Exception as e:
+        raise RuntimeError(f"Error occurred while simulating circuit: {e}")
 
 if __name__ == "__main__":
     try:
