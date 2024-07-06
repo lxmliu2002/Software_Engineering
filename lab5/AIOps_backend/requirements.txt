@@ -1,0 +1,12 @@
+Django
+numpy
+openai
+pandas
+Requests
+scikit_learn
+scipy
+tqdm
+xgboost
+django-cors-headers
+mysqlclient
+django_redis
